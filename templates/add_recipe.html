@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2>Add Recipe</h2>
+
+<form method="POST">
+    <input type="text" name="title" class="form-control mb-3" placeholder="Title" required>
+
+    <textarea name="description" class="form-control mb-3" placeholder="Description" required></textarea>
+
+    <textarea name="ingredients" class="form-control mb-3" placeholder="Ingredients" required></textarea>
+
+    <textarea name="instructions" class="form-control mb-3" placeholder="Instructions" required></textarea>
+
+    <select name="category" class="form-control mb-3">
+        {% for category in categories %}
+        <option value="{{ category.id }}">{{ category.name }}</option>
+        {% endfor %}
+    </select>
+
+    <button class="btn btn-custom">Add Recipe</button>
+</form>
+
+{% endblock %}

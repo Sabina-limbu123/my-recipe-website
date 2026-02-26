@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2 class="mb-4">Search Recipes</h2>
+
+<form method="GET">
+    <input type="text" name="q" class="form-control mb-3" placeholder="Search by title">
+    <button class="btn btn-custom">Search</button>
+</form>
+
+<hr>
+
+{% if results %}
+{% for recipe in results %}
+<div class="card mb-3 shadow-sm">
+
+    {% if recipe.image %}
+    <img src="{{ url_for('static', filename='images/' + recipe.image) }}" class="card-img-top"
+        style="height:200px; object-fit:cover;">
+    {% endif %}
+
+    <div class="card-body">
+        <h5>{{ recipe.title }}</h5>
+        <a href="{{ url_for('recipe_detail', id=recipe.id) }}" class="btn btn-custom btn-sm">
+            View Recipe
+        </a>
+    </div>
+</div>
+{% endfor %}
+{% endif %}
+
+{% endblock %}
