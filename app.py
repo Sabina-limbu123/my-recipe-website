@@ -5,7 +5,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'supersecret'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///recipes.db'
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///:memory:"
 
 db = SQLAlchemy(app)
 
@@ -190,5 +190,7 @@ if __name__ == "__main__":
             db.session.commit()
 
    
-    if __name__ == "__main__":
-        app.run()
+if __name__ == "__main__":
+    with app.app_context():
+        db.create_all()
+    app.run()
