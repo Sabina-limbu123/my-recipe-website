@@ -189,4 +189,6 @@ if __name__ == "__main__":
             db.session.add_all(recipes)
             db.session.commit()
 
-    app.run(debug=True)
+   
+    if __name__ == "__main__":
+        app.run()
